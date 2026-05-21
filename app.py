@@ -1,6 +1,63 @@
 from flask import Flask, render_template, jsonify, request
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 app = Flask(__name__)
+
+
+YOUR_EMAIL    = os.getenv("YOUR_EMAIL")
+YOUR_PASSWORD = os.getenv("YOUR_PASSWORD")
+NOTIFY_TO     = os.getenv("NOTIFY_TO")       # <-- jahan notification aaye (same ya alag)
+
+def send_notification(name, email, subject, message):
+    """Naya message aane pe email notification bhejo"""
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = f"📬 New Message from Portfolio: {subject}"
+        msg["From"]    = YOUR_EMAIL
+        msg["To"]      = NOTIFY_TO
+
+        html_body = f"""
+        <html><body style="font-family:Arial,sans-serif; max-width:600px; margin:auto; padding:20px;">
+          <h2 style="color:#6c63ff; border-bottom:2px solid #6c63ff; padding-bottom:10px;">
+            📬 New Portfolio Message
+          </h2>
+          <table style="width:100%; border-collapse:collapse;">
+            <tr><td style="padding:8px; font-weight:bold; color:#555;">Name:</td>
+                <td style="padding:8px;">{name}</td></tr>
+            <tr style="background:#f9f9f9;">
+                <td style="padding:8px; font-weight:bold; color:#555;">Email:</td>
+                <td style="padding:8px;"><a href="mailto:{email}">{email}</a></td></tr>
+            <tr><td style="padding:8px; font-weight:bold; color:#555;">Subject:</td>
+                <td style="padding:8px;">{subject}</td></tr>
+            <tr style="background:#f9f9f9;">
+                <td style="padding:8px; font-weight:bold; color:#555; vertical-align:top;">Message:</td>
+                <td style="padding:8px;">{message}</td></tr>
+          </table>
+          <p style="color:#888; font-size:12px; margin-top:20px;">
+            Yeh email aapke portfolio se automatic bheji gayi hai.
+          </p>
+        </body></html>
+        """
+
+        msg.attach(MIMEText(html_body, "html"))
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+         server.starttls()
+         server.login(YOUR_EMAIL, YOUR_PASSWORD)
+         server.sendmail(YOUR_EMAIL, NOTIFY_TO, msg.as_string())
+
+
+        print(f"[EMAIL] Notification sent for: {name} ({email})")
+        return True
+
+    except Exception as e:
+        print(f"[EMAIL ERROR] {e}")
+        return False
+
 
 # ─── PROJECTS DATA ─────────────────────────────────────
 projects_data = [
@@ -67,6 +124,10 @@ def contact():
     inbox.append({"name": name, "email": email,
                   "subject": subject, "message": message})
     print(f"[MSG] {name} ({email}): {subject}")
+
+    # ✅ Email notification bhejo
+    send_notification(name, email, subject, message)
+
     return jsonify({"message": f"Thanks {name}! I'll get back to you soon ✅"})
 
 @app.route("/api/messages")   # admin peek
