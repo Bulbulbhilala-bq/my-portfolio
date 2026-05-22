@@ -164,17 +164,13 @@
           <h3>Let's build something amazing together!</h3>
 
           <p>
-            Have a project in mind or just want to say hi?
+            Have a project in mind or just want to say hi? Drop me a message.
           </p>
 
         </div>
 
         <!-- WEB3FORMS CONTACT FORM -->
-        <form
-          class="contact-form"
-          action="https://api.web3forms.com/submit"
-          method="POST"
-        >
+        <form class="contact-form" id="contactForm">
 
           <!-- ACCESS KEY -->
           <input
@@ -187,7 +183,6 @@
 
             <div class="field">
               <label>Name</label>
-
               <input
                 type="text"
                 name="name"
@@ -198,7 +193,6 @@
 
             <div class="field">
               <label>Email</label>
-
               <input
                 type="email"
                 name="email"
@@ -210,34 +204,31 @@
           </div>
 
           <div class="field">
-
             <label>Subject</label>
-
             <input
               type="text"
               name="subject"
               placeholder="What's this about?"
               required
             />
-
           </div>
 
           <div class="field">
-
             <label>Message</label>
-
             <textarea
               name="message"
               rows="5"
               placeholder="Tell me about your project..."
               required
             ></textarea>
-
           </div>
 
-          <button type="submit" class="btn btn-grad btn-full">
+          <button type="submit" class="btn btn-grad btn-full" id="submitBtn">
             Send Message →
           </button>
+
+          <!-- Status message -->
+          <p id="formStatus" style="margin-top: 10px; text-align: center; font-size: 14px;"></p>
 
         </form>
 
@@ -264,32 +255,59 @@
 
     /* Load Projects */
     fetch('/api/projects')
-
       .then(r => r.json())
-
       .then(data => {
-
         const grid = document.getElementById('projects-grid');
-
         grid.innerHTML = data.map(p => `
-
           <div class="proj-card">
-
             <div class="proj-tag">${p.tag}</div>
-
             <h3>${p.title}</h3>
-
             <p>${p.description}</p>
-
             <div class="proj-tech">
               ${p.tech.map(t => `<span>${t}</span>`).join('')}
             </div>
-
           </div>
-
         `).join('');
-
       });
+
+    /* Contact Form — Web3Forms */
+    const form = document.getElementById('contactForm');
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      status.textContent = '';
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          btn.textContent = '✅ Message Sent!';
+          status.style.color = '#4ade80';
+          status.textContent = "Thanks! I'll get back to you soon.";
+          form.reset();
+        } else {
+          throw new Error('Submission failed');
+        }
+
+      } catch (err) {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        status.style.color = '#f87171';
+        status.textContent = 'Something went wrong. Please try again.';
+      }
+    });
 
   </script>
 
