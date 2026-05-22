@@ -4,7 +4,6 @@ import os
 app = Flask(__name__)
 
 # ─── PROJECTS DATA ───────────────────────────────────
-
 projects_data = [
     {
         "id": 1,
@@ -21,6 +20,42 @@ projects_data = [
         "title": "REST API Service",
         "description": "Scalable REST API with JWT authentication.",
         "tech": ["Python", "Flask", "Docker"],
+        "github": "https://github.com",
+        "live": "https://example.com"
+    },
+    {
+        "id": 3,
+        "tag": "ML Project",
+        "title": "Sentiment Analyzer",
+        "description": "NLP model jo text ka sentiment classify karta hai.",
+        "tech": ["Python", "scikit-learn", "Flask"],
+        "github": "https://github.com",
+        "live": "https://example.com"
+    },
+    {
+        "id": 4,
+        "tag": "Web App",
+        "title": "Task Manager",
+        "description": "Drag-and-drop task boards with real-time sync.",
+        "tech": ["React", "Node.js", "MongoDB"],
+        "github": "https://github.com",
+        "live": "https://example.com"
+    },
+    {
+        "id": 5,
+        "tag": "Dashboard",
+        "title": "Analytics Dashboard",
+        "description": "Real-time data visualization with charts and filters.",
+        "tech": ["React", "D3.js", "Python"],
+        "github": "https://github.com",
+        "live": "https://example.com"
+    },
+    {
+        "id": 6,
+        "tag": "Bot",
+        "title": "Discord Bot",
+        "description": "Feature-rich bot with moderation & custom commands.",
+        "tech": ["Python", "discord.py", "SQLite"],
         "github": "https://github.com",
         "live": "https://example.com"
     }
