@@ -287,7 +287,7 @@ em { color: var(--pink); font-style: normal; }
 .contact-label {
   font-size: 11px;
   color: #888;
-  margin: 0;
+  margin-bottom: 1px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   line-height: 1.2;
