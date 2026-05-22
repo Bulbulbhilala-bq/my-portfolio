@@ -266,23 +266,26 @@ em { color: var(--pink); font-style: normal; }
 .contact-details {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.8rem;
   margin-top: 1.5rem;
 }
 
 .contact-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
 }
 
 .contact-icon {
-  font-size: 20px;
-  margin-top: 1px;
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
 }
 
 .contact-label {
-  font-size: 12px;
+  font-size: 11px;
   color: #888;
   margin: 0 0 2px 0;
   text-transform: uppercase;
@@ -294,27 +297,11 @@ em { color: var(--pink); font-style: normal; }
   color: inherit;
   text-decoration: none;
   margin: 0;
-}
-.contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;  /* pehle 1.2rem tha, kam kiya */
-  margin-top: 1.5rem;
+  line-height: 1.4;
 }
 
 .contact-value:hover {
   color: var(--accent-color);
-}
-.contact-item {
-  display: flex;
-  align-items: center;  /* ye change karo — flex-start tha pehle */
-  gap: 10px;
-}
-
-.contact-icon {
-  font-size: 15px;
-  line-height: 0;
-  flex-shrink: 0;
 }
 @media (max-width: 480px) {
   .hero-left h1 { font-size: 2.2rem; }
