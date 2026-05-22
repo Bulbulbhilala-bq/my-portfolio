@@ -272,7 +272,7 @@ em { color: var(--pink); font-style: normal; }
 
 .contact-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;  /* center ki jagah flex-start */
   gap: 12px;
 }
 
@@ -282,6 +282,7 @@ em { color: var(--pink); font-style: normal; }
   flex-shrink: 0;
   width: 28px;
   text-align: center;
+  margin-top: 2px;  /* ye add karo */
 }
 
 .contact-label {
