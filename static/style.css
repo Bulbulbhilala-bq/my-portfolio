@@ -295,6 +295,12 @@ em { color: var(--pink); font-style: normal; }
   text-decoration: none;
   margin: 0;
 }
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;  /* pehle 1.2rem tha, kam kiya */
+  margin-top: 1.5rem;
+}
 
 .contact-value:hover {
   color: var(--accent-color);
