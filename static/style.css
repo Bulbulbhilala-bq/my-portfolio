@@ -273,7 +273,7 @@ em { color: var(--pink); font-style: normal; }
 .contact-item {
   display: flex;
   align-items: flex-start;  /* center ki jagah flex-start */
-  gap: 12px;
+  gap: 8px;
 }
 
 .contact-icon {
