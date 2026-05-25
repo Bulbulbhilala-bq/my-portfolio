@@ -6,7 +6,7 @@ app = Flask(__name__)
 # ─── PROJECTS DATA ───────────────────────────────────
 projects_data = [
     {
-        {
+        
     "id": 1,
     "tag": "Web App",
     "title": "E-Commerce Platform",
@@ -14,9 +14,8 @@ projects_data = [
     "tech": ["React", "Flask", "PostgreSQL"],
     "github": "https://github.com",
     "live": "https://example.com",
-    "image": "/static/images/ecommerce.png"
-}
-    },
+    "image": "/static/ecoomerse.png"
+ },
     {
         "id": 2,
         "tag": "API",
