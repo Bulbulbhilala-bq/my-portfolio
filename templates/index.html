@@ -189,18 +189,30 @@
       .then(r => r.json())
       .then(data => {
         const grid = document.getElementById('projects-grid');
-        grid.innerHTML = data.map(p => `
-          <div class="proj-card">
-            <div class="proj-tag">${p.tag}</div>
-            <h3>${p.title}</h3>
-            <p>${p.description}</p>
-            <div class="proj-tech">
-              ${p.tech.map(t => `<span>${t}</span>`).join('')}
-            </div>
-          </div>
-        `).join('');
-      });
+      grid.innerHTML = data.map(p => `
+  <div class="proj-card">
 
+    <img src="${p.image}" alt="${p.title}" class="proj-img">
+
+    <div class="proj-tag">${p.tag}</div>
+
+    <h3>${p.title}</h3>
+
+    <p>${p.description}</p>
+
+    <div class="proj-tech">
+      ${p.tech.map(t => `<span>${t}</span>`).join('')}
+    </div>
+
+    <div class="proj-links">
+      <a href="${p.live}" target="_blank">Live Demo</a>
+      <a href="${p.github}" target="_blank">GitHub</a>
+    </div>
+
+  </div>
+`).join('');
+      
+      });
     const form = document.getElementById('contactForm');
     const btn = document.getElementById('submitBtn');
     const status = document.getElementById('formStatus');

@@ -6,13 +6,16 @@ app = Flask(__name__)
 # ─── PROJECTS DATA ───────────────────────────────────
 projects_data = [
     {
-        "id": 1,
-        "tag": "Web App",
-        "title": "E-Commerce Platform",
-        "description": "Full-stack shopping app with cart, payments & admin dashboard.",
-        "tech": ["React", "Flask", "PostgreSQL"],
-        "github": "https://github.com",
-        "live": "https://example.com"
+        {
+    "id": 1,
+    "tag": "Web App",
+    "title": "E-Commerce Platform",
+    "description": "Full-stack shopping app with cart, payments & admin dashboard.",
+    "tech": ["React", "Flask", "PostgreSQL"],
+    "github": "https://github.com",
+    "live": "https://example.com",
+    "image": "/static/images/ecommerce.png"
+}
     },
     {
         "id": 2,
@@ -21,7 +24,9 @@ projects_data = [
         "description": "Scalable REST API with JWT authentication.",
         "tech": ["Python", "Flask", "Docker"],
         "github": "https://github.com",
-        "live": "https://example.com"
+        "live": "https://example.com",
+         "image": "/static/images/ecommerce.png"
+        
     },
     {
         "id": 3,
@@ -30,7 +35,8 @@ projects_data = [
         "description": "NLP model jo text ka sentiment classify karta hai.",
         "tech": ["Python", "scikit-learn", "Flask"],
         "github": "https://github.com",
-        "live": "https://example.com"
+        "live": "https://example.com",
+         "image": "/static/images/ecommerce.png"
     },
     {
         "id": 4,
@@ -39,7 +45,8 @@ projects_data = [
         "description": "Drag-and-drop task boards with real-time sync.",
         "tech": ["React", "Node.js", "MongoDB"],
         "github": "https://github.com",
-        "live": "https://example.com"
+        "live": "https://example.com",
+         "image": "/static/images/ecommerce.png"
     },
     {
         "id": 5,
@@ -48,7 +55,8 @@ projects_data = [
         "description": "Real-time data visualization with charts and filters.",
         "tech": ["React", "D3.js", "Python"],
         "github": "https://github.com",
-        "live": "https://example.com"
+        "live": "https://example.com",
+         "image": "/static/images/ecommerce.png"
     },
     {
         "id": 6,
@@ -57,7 +65,8 @@ projects_data = [
         "description": "Feature-rich bot with moderation & custom commands.",
         "tech": ["Python", "discord.py", "SQLite"],
         "github": "https://github.com",
-        "live": "https://example.com"
+        "live": "https://example.com",
+         "image": "/static/images/ecommerce.png"
     }
 ]
 
