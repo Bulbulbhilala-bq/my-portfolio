@@ -9,63 +9,64 @@ projects_data = [
         
     "id": 1,
     "tag": "Web App",
-    "title": "E-Commerce Platform",
-    "description": "Full-stack shopping app with cart, payments & admin dashboard.",
-    "tech": ["React", "Flask", "PostgreSQL"],
+    "title": "Oak Haven Furniture E-Commerce UI",
+    "description": "Oak Haven Furniture E-Commerce UI",
+    "tech": ["Figma","UI/UX Design","HTML","CSS","JavaScript"],
     "github": "https://github.com",
     "live": "https://example.com",
     "image": "/static/ecoomerse.png"
  },
     {
         "id": 2,
-        "tag": "API",
-        "title": "REST API Service",
-        "description": "Scalable REST API with JWT authentication.",
-        "tech": ["Python", "Flask", "Docker"],
+        "tag": "Porfolio UI",
+        "title": "Creative 3D Designer Portfolio",
+        "description": "Modern 3D artist portfolio UI designed in Figma with creative layouts, typography, and immersive visual storytelling.",
+        "tech": ["Figma","UI/UX Design","Typography","Layout Design"],
         "github": "https://github.com",
         "live": "https://example.com",
-         "image": "/static/images/ecommerce.png"
+         "image": "static/project.png"
         
     },
     {
         "id": 3,
-        "tag": "ML Project",
-        "title": "Sentiment Analyzer",
-        "description": "NLP model jo text ka sentiment classify karta hai.",
-        "tech": ["Python", "scikit-learn", "Flask"],
+        "tag": "App Design",
+        "title": "Food Delivery App Design",
+        "description": "Modern food delivery mobile app UI designed in Figma with clean layouts, interactive product screens, and user-friendly navigation.",
+        "tech": ["Figma","UI/UX Design","Mobile App Design","Prototype Design"],
         "github": "https://github.com",
         "live": "https://example.com",
-         "image": "/static/images/ecommerce.png"
+         "image": "static/{86BA08E1-03FD-4687-B44A-5996D87DCEF7}.png"
     },
     {
         "id": 4,
-        "tag": "Web App",
-        "title": "Task Manager",
-        "description": "Drag-and-drop task boards with real-time sync.",
-        "tech": ["React", "Node.js", "MongoDB"],
+        "tag": "Modern UI/UX Portfolio Website",
+        "title": "E-Commerce UI",
+        "description": "Modern UI/UX portfolio website with responsive and creative design.",
+        "tech": ["Figma","HTML","CSS","JavaScript","UI/UX Design"],
         "github": "https://github.com",
         "live": "https://example.com",
-         "image": "/static/images/ecommerce.png"
+         "image": "static/{6ACFF61D-F593-4BDC-BC89-2922DA30D7FA}.png"
+    },
+       {
+    "id": 5,
+    "tag": "Mobile App UI",
+    "title": "Coffee Ordering App UI",
+    "description": "Modern coffee ordering mobile app UI with onboarding, product details, cart, and checkout screens designed in Figma.",
+    "tech": ["Figma", "UI/UX Design", "Mobile App Design"],
+    "github": "https://github.com",
+    "live": "https://example.com",
+    "image": "/static/{A3BE337E-63E9-4FC2-9CE7-4D26702DC63C}.png"
+
     },
     {
-        "id": 5,
-        "tag": "Dashboard",
-        "title": "Analytics Dashboard",
-        "description": "Real-time data visualization with charts and filters.",
-        "tech": ["React", "D3.js", "Python"],
-        "github": "https://github.com",
-        "live": "https://example.com",
-         "image": "/static/images/ecommerce.png"
-    },
-    {
-        "id": 6,
-        "tag": "Bot",
-        "title": "Discord Bot",
-        "description": "Feature-rich bot with moderation & custom commands.",
-        "tech": ["Python", "discord.py", "SQLite"],
-        "github": "https://github.com",
-        "live": "https://example.com",
-         "image": "/static/images/ecommerce.png"
+    "id": 6,
+    "tag": "Expense Tracker Web App",
+    "title": "Expense Management Dashboard",
+    "description": "A modern expense tracking dashboard to manage daily expenses, categorize spending, monitor transactions, and analyze financial records with a clean and responsive UI.",
+    "tech": ["HTML", "CSS", "JavaScript", "Flask", "Python"],
+    "github": "https://github.com",
+    "live": "https://example.com",
+    "image": "static/{4B863567-0070-4484-9F18-6B974236C07F}.png"
     }
 ]
 
