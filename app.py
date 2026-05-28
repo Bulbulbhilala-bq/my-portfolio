@@ -18,13 +18,13 @@ projects_data = [
  },
     {
         "id": 2,
-        "tag": "Porfolio UI",
-        "title": "Creative 3D Designer Portfolio",
-        "description": "Modern 3D artist portfolio UI designed in Figma with creative layouts, typography, and immersive visual storytelling.",
-        "tech": ["Figma","UI/UX Design","Typography","Layout Design"],
+        "tag": "Frontend",
+        "title": " Zafran — Fine Dining Restaurant Website",
+        "description": " A fully responsive restaurant website with interactive menu filters, table reservation form & elegant dark UI..",
+        "tech": ["HTML CSS JavaScript","Responsive Design"],
         "github": "https://github.com",
-        "live": "https://example.com",
-         "image": "static/project.png"
+        "live": "https://zafran-frontend.netlify.app",
+         "image": "static/{A8B3F12F-03D4-4709-9C38-50A4447BBE1A}.png"
         
     },
     {
