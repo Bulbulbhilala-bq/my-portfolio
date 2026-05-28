@@ -204,10 +204,10 @@
       ${p.tech.map(t => `<span>${t}</span>`).join('')}
     </div>
 
-    <div class="proj-links">
-      <a href="#">In Deployment</a>
-      <a href="${p.github}" target="_blank">GitHub</a>
-    </div>
+   <div class="proj-links">
+  ${p.live ? `<a href="${p.live}" target="_blank">Live Demo</a>` : `<a href="#" class="disabled">In Deployment</a>`}
+  <a href="${p.github}" target="_blank">GitHub</a>
+</div>
 
   </div>
 `).join('');
