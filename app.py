@@ -21,7 +21,7 @@ projects_data = [
         "tag": "Frontend",
         "title": " Zafran — Fine Dining Restaurant Website",
         "description": " A fully responsive restaurant website with interactive menu filters, table reservation form & elegant dark UI..",
-        "tech": ["HTML CSS JavaScript","Responsive Design"],
+        "tech": ["HTML", "CSS", "JavaScript","Responsive Design"],
         "github": "https://github.com",
         "live": "https://zafran-frontend.netlify.app",
          "image": "static/{A8B3F12F-03D4-4709-9C38-50A4447BBE1A}.png"
