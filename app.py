@@ -24,7 +24,7 @@ projects_data = [
         "tech": ["HTML", "CSS", "JavaScript","Responsive Design"],
         "github": "https://github.com",
         "live": "https://zafran-frontend.netlify.app",
-         "image": "static/{A8B3F12F-03D4-4709-9C38-50A4447BBE1A}.png"
+         "image": "/static/{A8B3F12F-03D4-4709-9C38-50A4447BBE1A}.png"
         
     },
     {
@@ -35,7 +35,7 @@ projects_data = [
         "tech": ["Figma","UI/UX Design","Mobile App Design","Prototype Design"],
         "github": "https://github.com",
         "live": "https://example.com",
-         "image": "static/{86BA08E1-03FD-4687-B44A-5996D87DCEF7}.png"
+         "image": "/static/{86BA08E1-03FD-4687-B44A-5996D87DCEF7}.png"
     },
     {
         "id": 4,
@@ -45,7 +45,7 @@ projects_data = [
         "tech": ["Figma","HTML","CSS","JavaScript","UI/UX Design"],
         "github": "https://github.com",
         "live": "https://example.com",
-         "image": "static/{6ACFF61D-F593-4BDC-BC89-2922DA30D7FA}.png"
+         "image": "/static/{6ACFF61D-F593-4BDC-BC89-2922DA30D7FA}.png"
     },
        {
     "id": 5,
@@ -66,7 +66,7 @@ projects_data = [
     "tech": ["HTML", "CSS", "JavaScript", "Flask", "Python"],
     "github": "https://github.com",
     "live": "https://example.com",
-    "image": "static/{4B863567-0070-4484-9F18-6B974236C07F}.png"
+    "image": "/static/{4B863567-0070-4484-9F18-6B974236C07F}.png"
     }
 ]
 
