@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bulbul Bhilala — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#060d1a;--bg2:#0a1628;--bg3:#0f1f38;
+      --accent:#00c8ff;--accent2:#0066ff;
+      --text:#e8f4ff;--muted:#4a7a9b;
+      --border:rgba(0,200,255,0.15);--code-bg:#040c18;--green:#00e5a0;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;min-height:100vh;}
+    .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+      background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);
+      background-size:44px 44px;}
+
+    .topbar{position:fixed;top:0;left:0;right:0;height:56px;
+      background:rgba(6,13,26,0.97);border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 2.5rem;z-index:100;backdrop-filter:blur(14px);}
+    .logo{font-family:'Fira Code',monospace;font-size:1rem;font-weight:600;color:var(--accent);letter-spacing:1px;}
+    .topnav{display:flex;align-items:center;gap:0.2rem;}
+    .topnav a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;
+      padding:0.4rem 0.9rem;border-radius:6px;transition:color 0.2s,background 0.2s;}
+    .topnav a:hover{color:var(--text);background:rgba(0,200,255,0.06);}
+    .topnav a.nav-cta{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;margin-left:0.5rem;}
+    .topnav a.nav-cta:hover{opacity:0.88;}
+    .btn-hire{background:transparent;border:1.5px solid var(--green);color:var(--green);
+      padding:0.38rem 1.1rem;border-radius:7px;text-decoration:none;font-weight:700;font-size:0.82rem;
+      margin-left:0.8rem;cursor:pointer;transition:all 0.25s;display:inline-flex;align-items:center;gap:5px;
+      animation:hireGlow 2.5s ease-in-out infinite;}
+    .btn-hire:hover{background:rgba(0,229,160,0.1);box-shadow:0 0 22px rgba(0,229,160,0.35);transform:translateY(-1px);}
+    @keyframes hireGlow{0%,100%{box-shadow:0 0 8px rgba(0,229,160,0.15)}50%{box-shadow:0 0 18px rgba(0,229,160,0.4)}}
+    .hire-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+
+    main{padding-top:56px;position:relative;z-index:1;}
+
+    #home{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;padding:0 4rem 0 3rem;gap:3rem;overflow:hidden;}
+    .hi-line{font-family:'Fira Code',monospace;font-size:0.88rem;color:var(--accent);margin-bottom:0.6rem;opacity:0.85;}
+    .hero-name{font-size:clamp(3rem,5.5vw,4.8rem);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:0.3rem;}
+    .name-hi{color:var(--text)}
+    .name-bulbul{color:var(--accent);display:block;text-shadow:0 0 60px rgba(0,200,255,0.4);}
+    .hero-role{font-size:1.3rem;font-weight:700;color:#5bbfff;margin-bottom:1.2rem;letter-spacing:-0.3px;}
+    .hero-desc{color:var(--muted);font-size:0.95rem;line-height:1.85;max-width:420px;margin-bottom:2rem;}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-primary{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;padding:0.72rem 1.6rem;
+      border-radius:7px;text-decoration:none;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;
+      transition:transform 0.2s,box-shadow 0.2s;display:inline-block;box-shadow:0 0 20px rgba(0,200,255,0.2);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,200,255,0.35);}
+    .btn-ghost{background:transparent;border:1.5px solid rgba(0,200,255,0.3);color:var(--accent);
+      padding:0.72rem 1.6rem;border-radius:7px;text-decoration:none;font-weight:600;font-size:0.9rem;
+      cursor:pointer;transition:border-color 0.2s,transform 0.2s,background 0.2s;display:inline-block;}
+    .btn-ghost:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(0,200,255,0.06);}
+    .skill-pills{display:flex;flex-direction:column;gap:0.6rem;margin-top:2rem;}
+    .pill-row{display:flex;gap:0.5rem;flex-wrap:wrap;}
+    .pill{background:rgba(0,200,255,0.06);border:1px solid rgba(0,200,255,0.18);color:var(--accent);
+      padding:0.28rem 0.8rem;border-radius:5px;font-size:0.76rem;font-family:'Fira Code',monospace;transition:background 0.2s;}
+    .pill:hover{background:rgba(0,200,255,0.12)}
+    .pill.blue{background:rgba(0,102,255,0.1);border-color:rgba(0,102,255,0.3);color:#7eb8ff;}
+    .pill.teal{background:rgba(0,229,160,0.07);border-color:rgba(0,229,160,0.2);color:var(--green);}
+
+    .code-box{background:var(--code-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;
+      font-family:'Fira Code',monospace;box-shadow:0 0 40px rgba(0,200,255,0.06);}
+    .code-titlebar{background:#0a1220;padding:9px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(0,200,255,0.1);}
+    .dot-r{width:10px;height:10px;border-radius:50%;background:#ff5f56}
+    .dot-y{width:10px;height:10px;border-radius:50%;background:#ffbd2e}
+    .dot-g{width:10px;height:10px;border-radius:50%;background:#27c93f}
+    .code-filename{font-size:0.72rem;color:#4a7a9b;margin-left:6px;}
+    .code-body{padding:1.4rem;font-size:0.8rem;line-height:1.85;}
+    .kw{color:#7eb8ff}.cls{color:#00e5a0}.fn{color:#00c8ff}
+    .st{color:#b3e5ff}.cm{color:#2d5a7a;font-style:italic}.var{color:#5bbfff}
+    .i1{display:inline-block;width:1.5em}.i2{display:inline-block;width:3em}
+
+    section{padding:5rem 4rem 5rem 3rem}
+    .sec-tag{font-family:'Fira Code',monospace;font-size:0.72rem;letter-spacing:3px;
+      text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;opacity:0.75;}
+    .sec-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;letter-spacing:-1px;margin-bottom:0.8rem;}
+    .sec-sub{color:var(--muted);font-size:0.95rem;margin-bottom:3rem;max-width:500px;line-height:1.7}
+    .sec-line{width:50px;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;margin-bottom:2rem;}
+
+    #about{background:var(--bg2)}
+    .about-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center;}
+    .about-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;min-width:200px;}
+    .av{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent2),var(--accent));
+      display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;color:#fff;
+      margin:0 auto 1rem;box-shadow:0 0 30px rgba(0,200,255,0.25);}
+    .av-name{font-size:1rem;font-weight:700;margin-bottom:0.3rem;}
+    .av-role{font-size:0.76rem;color:var(--accent);font-family:'Fira Code',monospace;}
+    .stat-mini{margin-top:1.2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+    .sm-n{font-size:1.5rem;font-weight:800;color:var(--accent);}
+    .sm-l{font-size:0.66rem;color:var(--muted);letter-spacing:1px;}
+    .about-text p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:0.95rem;}
+    .about-text strong{color:var(--accent)}
+    .highlight-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
+    .htag{background:rgba(0,200,255,0.07);border:1px solid rgba(0,200,255,0.18);color:var(--accent);
+      padding:0.3rem 0.85rem;border-radius:100px;font-size:0.76rem;font-weight:500;}
+
+    #skills{background:var(--bg)}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1.2rem;}
+    .sk{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.3rem;
+      transition:border-color 0.25s,transform 0.2s,box-shadow 0.2s;}
+    .sk:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,200,255,0.1);}
+    .sk-ico{font-size:1.6rem;margin-bottom:0.7rem;}
+    .sk-name{font-weight:700;font-size:0.92rem;margin-bottom:0.2rem;}
+    .sk-lv{font-size:0.73rem;color:var(--muted);font-family:'Fira Code',monospace;margin-bottom:0.8rem;}
+    .sk-bar{height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden;}
+    .sk-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px;transition:width 1.2s ease;}
+
+    #projects{background:var(--bg2)}
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+    .pc{background:var(--bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+      transition:border-color 0.25s,transform 0.2s,box-shadow 0.2s;}
+    .pc:hover{border-color:var(--accent);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,200,255,0.1);}
+    .pt{height:180px;overflow:hidden;position:relative;
+      background:linear-gradient(135deg,var(--bg3),rgba(0,200,255,0.05));border-bottom:1px solid var(--border);}
+    .pt img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;}
+    .pc:hover .pt img{transform:scale(1.04);}
+    .pt-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+    .pb-badge{position:absolute;top:10px;right:10px;background:rgba(0,13,26,0.85);
+      border:1px solid rgba(0,200,255,0.3);color:var(--accent);padding:3px 9px;border-radius:100px;
+      font-size:0.67rem;font-family:'Fira Code',monospace;font-weight:600;backdrop-filter:blur(6px);}
+    .pb{padding:1.3rem;}
+    .pt2{font-weight:700;font-size:1rem;margin-bottom:0.45rem;}
+    .pd{color:var(--muted);font-size:0.85rem;line-height:1.6;margin-bottom:1rem;}
+    .ptags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:1rem;}
+    .ptag{background:rgba(0,200,255,0.05);border:1px solid rgba(0,200,255,0.12);color:#4a7a9b;
+      padding:2px 7px;border-radius:4px;font-size:0.7rem;font-family:'Fira Code',monospace;}
+    .pls{display:flex;gap:1rem;}
+    .pl{color:var(--accent);font-size:0.8rem;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:4px;
+      border-bottom:1px solid rgba(0,200,255,0.25);padding-bottom:1px;transition:border-color 0.2s,color 0.2s;}
+    .pl:hover{border-color:var(--accent);color:#fff}
+    .pl.disabled{color:var(--muted);border-color:transparent;pointer-events:none;}
+
+    #contact{background:var(--bg)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;}
+    .ci h3{font-size:1.2rem;font-weight:700;margin-bottom:0.8rem;}
+    .ci p{color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:1.5rem;}
+    .citem{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem;font-size:0.88rem;color:var(--muted);}
+    .cico2{width:34px;height:34px;background:rgba(0,200,255,0.06);border:1px solid rgba(0,200,255,0.15);
+      border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+    .citem a{color:var(--text);text-decoration:none;}
+    .citem a:hover{color:var(--accent)}
+    .cf{display:flex;flex-direction:column;gap:0.9rem;}
+    .frow{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+    .fg{display:flex;flex-direction:column;gap:0.35rem;}
+    .fg label{font-size:0.76rem;color:var(--muted);font-family:'Fira Code',monospace;}
+    .fg input,.fg textarea{background:rgba(0,200,255,0.03);border:1px solid rgba(0,200,255,0.12);
+      border-radius:7px;padding:0.72rem 0.9rem;color:var(--text);font-family:inherit;
+      font-size:0.88rem;transition:border-color 0.2s;}
+    .fg input:focus,.fg textarea:focus{outline:none;border-color:var(--accent)}
+    .fg textarea{min-height:110px;resize:vertical;}
+    .fstatus{font-size:0.8rem;color:var(--accent);min-height:1.2rem;}
+
+    footer{background:var(--bg2);border-top:1px solid var(--border);
+      padding:1.5rem 4rem 1.5rem 3rem;display:flex;align-items:center;
+      justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    footer p{color:var(--muted);font-size:0.8rem;}
+    footer strong{color:var(--accent)}
+    .fsoc{display:flex;gap:1.2rem;}
+    .fsoc a{color:var(--muted);text-decoration:none;font-size:0.8rem;transition:color 0.2s;}
+    .fsoc a:hover{color:var(--accent)}
+
+    @media(max-width:900px){
+      #home{grid-template-columns:1fr;padding:4rem 1.5rem 2rem;}
+      section{padding:3.5rem 1.5rem}
+      .about-grid{grid-template-columns:1fr}
+      .contact-grid,.frow{grid-template-columns:1fr}
+      footer{padding:1.5rem}
+      .topnav a:not(.nav-cta):not(.btn-hire){display:none}
+    }
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<div class="topbar">
+  <div class="logo">BULBUL</div>
+  <nav class="topnav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+    <a href="#contact" class="btn-hire"><span class="hire-dot"></span> Hire Me</a>
+  </nav>
+</div>
+
+<main>
+
+<section id="home">
+  <div class="hero-left">
+    <div class="hi-line">// Hello World 👋</div>
+    <div class="hero-name">
+      <span class="name-hi">Hi, I'm</span>
+      <span class="name-bulbul">Bulbul</span>
+    </div>
+    <div class="hero-role">Full Stack Developer</div>
+    <p class="hero-desc">I craft fast, beautiful &amp; scalable web apps — from pixel-perfect UIs to powerful Python backends.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Let's Talk</a>
+    </div>
+    <div class="skill-pills">
+      <div class="pill-row">
+        <span class="pill">Python</span><span class="pill">Flask</span>
+        <span class="pill blue">React</span><span class="pill">Node.js</span>
+      </div>
+      <div class="pill-row">
+        <span class="pill teal">MySQL</span><span class="pill">HTML/CSS</span>
+        <span class="pill blue">JavaScript</span>
+      </div>
+    </div>
+  </div>
+  <div class="code-box">
+    <div class="code-titlebar">
+      <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+      <span class="code-filename">developer.py</span>
+    </div>
+    <div class="code-body">
+      <span class="cm"># Bulbul Bhilala — Full Stack Dev</span><br><br>
+      <span class="kw">class</span> <span class="cls">Developer</span>:<br>
+      <span class="i1"></span><span class="kw">def</span> <span class="fn">__init__</span>(<span class="var">self</span>):<br>
+      <span class="i2"></span><span class="var">self</span>.<span class="fn">name</span> = <span class="st">"Bulbul"</span><br>
+      <span class="i2"></span><span class="var">self</span>.<span class="fn">role</span> = <span class="st">"Full Stack Dev"</span><br>
+      <span class="i2"></span><span class="var">self</span>.<span class="fn">skills</span> = [<br>
+      <span class="i2"></span><span class="i1"></span><span class="st">"Python"</span>, <span class="st">"Flask"</span>,<br>
+      <span class="i2"></span><span class="i1"></span><span class="st">"JavaScript"</span>, <span class="st">"React"</span><br>
+      <span class="i2"></span>]<br>
+      <span class="i2"></span><span class="var">self</span>.<span class="fn">location</span> = <span class="st">"Madhya Pradesh 🇮🇳"</span><br><br>
+      <span class="i1"></span><span class="kw">def</span> <span class="fn">say_hello</span>(<span class="var">self</span>):<br>
+      <span class="i2"></span><span class="kw">return</span> <span class="st">"Let's build something great!"</span><br><br>
+      <span class="var">bulbul</span> = <span class="cls">Developer</span>()<br>
+      <span class="fn">print</span>(<span class="var">bulbul</span>.<span class="fn">say_hello</span>())<br>
+      <span class="cm"># Output: Let's build something great!</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sec-tag">ABOUT ME</div>
+  <div class="sec-line"></div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="av">BB</div>
+      <div class="av-name">Bulbul Bhilala</div>
+      <div class="av-role">full_stack_dev()</div>
+      <div class="stat-mini">
+        <div><div class="sm-n" id="sc1">0</div><div class="sm-l">PROJECTS</div></div>
+        <div><div class="sm-n" id="sc2">0</div><div class="sm-l">SKILLS</div></div>
+        <div><div class="sm-n" id="sc3">0</div><div class="sm-l">YEARS</div></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="sec-title">Who Am I?</div>
+      <p>I'm <strong>Bulbul Bhilala</strong>, a passionate Full Stack Developer from Madhya Pradesh, India. I love turning ideas into reality through clean, efficient code.</p>
+      <p>My expertise spans both frontend and backend — I build complete web applications from beautiful user interfaces to powerful Python-powered APIs.</p>
+      <p>When I'm not coding, I explore new technologies, contribute to open source projects, and level up my skills every day.</p>
+      <div class="highlight-tags">
+        <span class="htag">Problem Solver</span><span class="htag">Clean Coder</span>
+        <span class="htag">Fast Learner</span><span class="htag">Team Player</span>
+        <span class="htag">Open Source</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-tag">MY SKILLS</div>
+  <div class="sec-line"></div>
+  <div class="sec-title">Tech Stack</div>
+  <div class="sec-sub">Tools and technologies I use to craft great products.</div>
+  <div class="skills-grid" id="skills-grid"></div>
+</section>
+
+<section id="projects">
+  <div class="sec-tag">MY PROJECTS</div>
+  <div class="sec-line"></div>
+  <div class="sec-title">Projects</div>
+  <div class="sec-sub">Things I've built — real, functional, and purposeful.</div>
+  <div class="proj-grid" id="proj-grid"></div>
+</section>
+
+<section id="contact">
+  <div class="sec-tag">CONTACT ME</div>
+  <div class="sec-line"></div>
+  <div class="sec-title">Get In Touch</div>
+  <div class="contact-grid">
+    <div class="ci">
+      <h3>Let's build something together!</h3>
+      <p>Have a project idea or just want to say hello? Drop me a message and I'll get back to you quickly.</p>
+      <div class="citem"><div class="cico2">📧</div><a href="mailto:bhilalabulbul32@gmail.com">bhilalabulbul32@gmail.com</a></div>
+      <div class="citem"><div class="cico2">📍</div><span>Bhopal, Madhya Pradesh, India</span></div>
+      <div class="citem"><div class="cico2">🐙</div><a href="https://github.com/Bulbulbhilala-bq" target="_blank">github.com/Bulbulbhilala-bq</a></div>
+      <div class="citem"><div class="cico2">💼</div><a href="https://www.linkedin.com/in/bulbul-bhilala-965a3332b/" target="_blank">linkedin.com/in/bulbul-bhilala</a></div>
+    </div>
+
+    <!-- ✅ Flask backend se directly Gmail pe message -->
+    <form class="cf" id="cform">
+      <div class="frow">
+        <div class="fg"><label>Name</label><input id="fname" type="text" placeholder="Your Name" required/></div>
+        <div class="fg"><label>Email</label><input id="femail" type="email" placeholder="your@email.com" required/></div>
+      </div>
+      <div class="fg"><label>Subject</label><input id="fsubject" placeholder="Project Inquiry"/></div>
+      <div class="fg"><label>Message</label><textarea id="fmessage" placeholder="Tell me about your project..." required></textarea></div>
+      <div class="fstatus" id="fst"></div>
+      <button type="submit" class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;" id="submitBtn">send_message() →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; Built by <strong>BULBUL</strong> — Full Stack Developer</p>
+  <div class="fsoc">
+    <a href="https://github.com/Bulbulbhilala-bq" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/bulbul-bhilala-965a3332b/" target="_blank">LinkedIn</a>
+    <a href="mailto:bhilalabulbul32@gmail.com">Email</a>
+  </div>
+</footer>
+</main>
+
+<script>
+const projects = [
+  {screenshot:"static/images/tracker.jpeg",
+  emoji:"🛒",
+  badge:"Full Stack",
+  title:"Expense Management Dashboard",
+   desc:"A responsive expense tracking dashboard for managing transactions, categorizing expenses, and monitoring spending.",
+   tags:["HTML","CSS","JS","Python","Flask","React"],
+   live:"https://expense-tracker-2-qh4o.onrender.com/",
+   github:"https://github.com"},
+  {
+    screenshot:"",
+    emoji:"🎉",
+    badge:"Backend",
+    title:"Flask Chat",
+   desc:"Real-time chat platform with WebSockets — supports group rooms, private messaging & instant delivery.",
+   tags:["Python","Flask","Chart.js"],
+   live:"https://zafran-backend-2.onrender.com",
+   github:"https://github.com"},
+  {
+    screenshot:"static/images/image.png",
+    emoji:"💬",
+    badge:"Full Stack",
+    title:"Dream Day Even",
+   desc:"Real-time chat with WebSockets, rooms & private messaging support.",
+   tags:["UI/UX Design", "Responsive Design", "WixWeb"],
+   live:"https://bhilalabulbul32.wixsite.com/dream-day-events",
+   github:""},
+  {
+    screenshot: "static/images/auraluxur.jpeg",
+emoji: "🛍️",
+badge: "No-Code",
+title: "Aurora Luxe",
+desc: "Luxury lifestyle website built with Wix — elegant design with smooth navigation & brand aesthetics.",
+tags: ["Wixweb","Responsive Design","UI/UX Design", "Branding"],
+live: "https://bhilalabulbul32.wixsite.com/aurora-luxe",
+github: ""
+  },
+  {
+  screenshot: "static/images/jewelry.png",
+  emoji: "💍",
+  badge: "E-Commerce Project",
+  title: "Lunar Gems",
+  desc: "Handcrafted artisan jewelry store featuring curated collections of necklaces, rings, earrings & bracelets for life's most cherished moments.",
+  tags: ["Wix", "E-Commerce", "UI Design"],
+  live: "https://bhilalabulbul32.wixsite.com/lunar-gems",
+  github: ""
+},
+  {
+    screenshot: "static/images/mobileapp.png",
+   emoji: "☕",
+badge: "UI/UX Design",
+title: "Coffee App UI",
+desc: "Mobile app UI design for a coffee ordering platform — featuring product listing, detail view & cart with smooth dark theme aesthetics.",
+tags: ["Figma", "UI/UX Design", "Mobile Design", "Prototyping"],
+live: "",
+github: ""
+  }
+];
+
+const pg = document.getElementById('proj-grid');
+projects.forEach(p => {
+  const thumb = p.screenshot ? `<img src="${p.screenshot}" alt="${p.title}" loading="lazy"/>` : `<div class="pt-fallback">${p.emoji}</div>`;
+  const liveBtn = p.live ? `<a href="${p.live}" target="_blank" class="pl">Live Demo ↗</a>` : `<span class="pl disabled">No Live Demo</span>`;
+  const ghBtn = p.github ? `<a href="${p.github}" target="_blank" class="pl">Source ↗</a>` : `<span class="pl disabled">Private Repo</span>`;
+  pg.innerHTML += `<div class="pc"><div class="pt">${thumb}<span class="pb-badge">${p.badge}</span></div><div class="pb"><div class="pt2">${p.title}</div><div class="pd">${p.desc}</div><div class="ptags">${p.tags.map(t=>`<span class="ptag">${t}</span>`).join('')}</div><div class="pls">${liveBtn}${ghBtn}</div></div></div>`;
+});
+
+const skills = [
+  {ico:'🌐',name:'HTML & CSS',lv:'Expert',p:95},
+  {ico:'⚡',name:'JavaScript',lv:'Advanced',p:85},
+  {ico:'🐍',name:'Python',lv:'Advanced',p:88},
+  {ico:'🔥',name:'Flask',lv:'Intermediate',p:78},
+  {ico:'⚛️',name:'React',lv:'Intermediate',p:72},
+  {ico:'🗄️',name:'MySQL',lv:'Intermediate',p:75},
+  {ico:'🔧',name:'Git/GitHub',lv:'Advanced',p:85},
+{ico:'🎨', name:'Figma', lv:'Intermediate', p:72},
+{ico:'✏️', name:'UI/UX Design', lv:'Intermediate', p:68},
+  {ico:'🧮', name:'DSA', lv:'Intermediate', p:78},
+];
+const sg = document.getElementById('skills-grid');
+skills.forEach(s => {
+  sg.innerHTML += `<div class="sk"><div class="sk-ico">${s.ico}</div><div class="sk-name">${s.name}</div><div class="sk-lv">${s.lv}</div><div class="sk-bar"><div class="sk-fill" data-p="${s.p}" style="width:0%"></div></div></div>`;
+});
+
+const obs = new IntersectionObserver(e => {
+  e.forEach(x => { if(x.isIntersecting) document.querySelectorAll('.sk-fill').forEach(el => el.style.width = el.dataset.p+'%'); });
+},{threshold:0.3});
+const ss = document.getElementById('skills');
+if(ss) obs.observe(ss);
+
+function cnt(el,target,sfx='+'){
+  let n=0; const step=Math.ceil(target/30);
+  const iv=setInterval(()=>{ n=Math.min(n+step,target); el.textContent=n+sfx; if(n>=target)clearInterval(iv); },50);
+}
+setTimeout(()=>{ cnt(document.getElementById('sc1'),15); cnt(document.getElementById('sc2'),10); cnt(document.getElementById('sc3'),2); },600);
+
+// ✅ Flask /api/contact pe form submit — Gmail pe message aayega
+document.getElementById('cform').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const st  = document.getElementById('fst');
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'sending...';
+  btn.disabled = true;
+  st.style.color = 'var(--accent)';
+  st.textContent = '';
+
+  try {
+    const r = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name:    document.getElementById('fname').value,
+        email:   document.getElementById('femail').value,
+        subject: document.getElementById('fsubject').value,
+        message: document.getElementById('fmessage').value
+      })
+    });
+    const d = await r.json();
+    if (r.ok) {
+      st.style.color = 'var(--green)';
+      st.textContent = '✅ Message sent! I\'ll reply soon.';
+      this.reset();
+    } else {
+      st.style.color = '#f09595';
+      st.textContent = '❌ ' + (d.error || 'Something went wrong.');
+    }
+  } catch {
+    st.style.color = '#ffa657';
+    st.textContent = '⚠️ Server error. Email me directly!';
+  }
+  btn.textContent = 'send_message() →';
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>
